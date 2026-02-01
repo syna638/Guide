@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Overview - Smart Civic Connect Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+                SCC Guide
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="overview.html" class="nav-link active">Project Overview</a>
+                <a href="concepts.html" class="nav-link">Tech Concepts</a>
+                <a href="setup.html" class="nav-link">Setup Guide</a>
+                <a href="architecture.html" class="nav-link">Architecture</a>
+                <a href="interview.html" class="nav-link">Interview Prep</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Project Overview</h1>
+        <p>Understanding what Smart Civic Connect does and the problems it solves</p>
+    </header>
+
+    <div class="container">
+
+        <!-- What is SCC -->
+        <section class="content">
+            <h2>What is Smart Civic Connect?</h2>
+
+            <p>Imagine you're walking in your neighborhood and you see a big pothole in the road, or a broken
+                streetlight that's been out for weeks. What do you do? In most cities, you might:</p>
+
+            <ul>
+                <li>Call a government helpline (and wait on hold forever)</li>
+                <li>Visit a government office (taking hours out of your day)</li>
+                <li>Send an email (and hope someone reads it)</li>
+                <li>Do nothing (because it's too much hassle)</li>
+            </ul>
+
+            <p><strong>Smart Civic Connect solves this problem!</strong></p>
+
+            <p>It's a web application that lets citizens report civic issues directly from their phone or computer. You
+                take a photo, describe the problem, and submit it. The government officials receive your complaint,
+                track its progress, and resolve it – all through the same platform.</p>
+
+            <div class="info-box note">
+                <div class="info-box-title">📘 Think of it like...</div>
+                <p>Smart Civic Connect is like an online complaint box combined with a package tracking system. You
+                    submit a complaint, and you can track its status from "Pending" to "In Progress" to "Resolved" –
+                    just like tracking a delivery!</p>
+            </div>
+        </section>
+
+        <!-- The Problem We Solve -->
+        <section class="content">
+            <h2>The Problem We Solve</h2>
+
+            <h3>Traditional Complaint Process</h3>
+            <div class="diagram">
+                <div class="diagram-flow">
+                    <div class="diagram-box">Citizen sees problem</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box">Calls helpline</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box">Waits on hold</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box">Files complaint</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box">No updates</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box" style="background: #fef2f2; border-color: #ef4444;">Frustration 😤</div>
+                </div>
+            </div>
+
+            <h3>With Smart Civic Connect</h3>
+            <div class="diagram">
+                <div class="diagram-flow">
+                    <div class="diagram-box">Citizen sees problem</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box highlight">Opens app</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box highlight">Takes photo & submits</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box highlight">Gets real-time updates</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box" style="background: #f0fdf4; border-color: #22c55e;">Problem resolved! ✅
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="content">
+            <h2>Key Features</h2>
+
+            <h3>For Citizens (Regular Users)</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">📸</div>
+                    <h3>Photo Evidence</h3>
+                    <p>Upload photos directly from your camera to show exactly what the problem looks like.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3>Location Tracking</h3>
+                    <p>Use GPS or pick a location on the map so officials know exactly where the issue is.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Real-time Status</h3>
+                    <p>Track your complaint's progress: Pending → In Progress → Resolved.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔔</div>
+                    <h3>Notifications</h3>
+                    <p>Get notified when there's an update on your complaint.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Works great on phones, tablets, and computers. Can be installed as an app!</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌙</div>
+                    <h3>Dark Mode</h3>
+                    <p>Choose between light and dark themes based on your preference.</p>
+                </div>
+            </div>
+
+            <h3>For Administrators (Government Officials)</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <h3>Dashboard</h3>
+                    <p>See all complaints in one place with filters to find specific issues.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">✏️</div>
+                    <h3>Status Management</h3>
+                    <p>Update complaint status and add notes about the resolution.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Analytics</h3>
+                    <p>View statistics about complaints: how many, which categories, resolution times.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Secure Access</h3>
+                    <p>Separate login system ensures only authorized officials can access admin features.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Types of Complaints -->
+        <section class="content">
+            <h2>Types of Complaints You Can Report</h2>
+
+            <p>Smart Civic Connect handles various categories of civic issues:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🚗 Roads & Traffic</strong></td>
+                            <td>Potholes, broken traffic signals, missing road signs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💡 Electricity</strong></td>
+                            <td>Broken streetlights, power outages, exposed wires</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💧 Water Supply</strong></td>
+                            <td>Leaking pipes, water shortage, contaminated water</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🗑️ Sanitation</strong></td>
+                            <td>Garbage overflow, clogged drains, public toilet issues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🏛️ Public Infrastructure</strong></td>
+                            <td>Broken benches, damaged sidewalks, park maintenance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📋 Others</strong></td>
+                            <td>Any other civic issue not covered above</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- User Journey -->
+        <section class="content">
+            <h2>How It Works: User Journey</h2>
+
+            <h3>Citizen's Journey</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Sign Up / Sign In</div>
+                    <div class="step-content">
+                        <p>Create an account using email, Google, or other methods. This takes less than a minute.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Report an Issue</div>
+                    <div class="step-content">
+                        <p>Click "New Complaint," take a photo, select the category, describe the problem, and mark the
+                            location.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Submit</div>
+                    <div class="step-content">
+                        <p>Hit submit and your complaint goes directly to the relevant department.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Track Progress</div>
+                    <div class="step-content">
+                        <p>Check your complaints list anytime to see the current status and any admin responses.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Get Notified</div>
+                    <div class="step-content">
+                        <p>Receive notifications when your complaint is acknowledged, being worked on, or resolved.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Administrator's Journey</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Secure Login</div>
+                    <div class="step-content">
+                        <p>Log in using admin credentials (separate from citizen accounts for security).</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">View Dashboard</div>
+                    <div class="step-content">
+                        <p>See all pending complaints, filter by category or status, and prioritize urgent issues.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Update Status</div>
+                    <div class="step-content">
+                        <p>Change complaint status from "Pending" to "In Progress" when work begins.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Resolve & Document</div>
+                    <div class="step-content">
+                        <p>Mark as "Resolved" and add notes or photos showing the completed work.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why This Matters -->
+        <section class="content">
+            <h2>Why This Project Matters</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>Civic Empowerment</h3>
+                    <p>Gives citizens a voice in improving their community without bureaucratic hurdles.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Efficiency</h3>
+                    <p>Reduces time and effort for both citizens and government officials.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">👁️</div>
+                    <h3>Transparency</h3>
+                    <p>Everyone can see what's happening with complaints – no more "lost" paperwork.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Data-Driven</h3>
+                    <p>Analytics help identify problem areas and allocate resources effectively.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Summary -->
+        <section class="content">
+            <h2>Technical Summary</h2>
+
+            <p>For those who want a quick technical overview (we'll explain all these terms in the <a
+                    href="concepts.html">Tech Concepts</a> section):</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontend Framework</strong></td>
+                            <td>Next.js 15 (React)</td>
+                            <td>Builds the user interface</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Styling</strong></td>
+                            <td>Tailwind CSS</td>
+                            <td>Makes everything look beautiful</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Citizen Auth</strong></td>
+                            <td>Clerk</td>
+                            <td>Handles user sign-up and login</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Admin Auth</strong></td>
+                            <td>Custom JWT</td>
+                            <td>Secure admin authentication</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database</strong></td>
+                            <td>Supabase (PostgreSQL)</td>
+                            <td>Stores all data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>File Storage</strong></td>
+                            <td>Supabase Storage</td>
+                            <td>Stores uploaded photos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hosting</strong></td>
+                            <td>Vercel</td>
+                            <td>Runs the website on the internet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile App</strong></td>
+                            <td>PWA / TWA</td>
+                            <td>Installable app from the website</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Next Step</div>
+                <p>Ready to understand what all these terms mean? Head over to <a href="concepts.html">Tech Concepts</a>
+                    to learn about Frontend, Backend, APIs, and more!</p>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="content" style="text-align: center;">
+            <p>
+                <a href="index.html" style="margin-right: 1rem;">← Back to Home</a>
+                <a href="concepts.html"
+                    style="display: inline-block; background: linear-gradient(135deg, #2563eb, #0ea5e9); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">
+                    Next: Tech Concepts →
+                </a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Smart Civic Connect</strong> - Client Guide</p>
+        <p>Developed by Syna Bhatnagar</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+    </script>
+
+</body>
+
+</html>

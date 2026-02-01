@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture - Smart Civic Connect Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+                SCC Guide
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="overview.html" class="nav-link">Project Overview</a>
+                <a href="concepts.html" class="nav-link">Tech Concepts</a>
+                <a href="setup.html" class="nav-link">Setup Guide</a>
+                <a href="architecture.html" class="nav-link active">Architecture</a>
+                <a href="interview.html" class="nav-link">Interview Prep</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Architecture & Project Structure</h1>
+        <p>How all the pieces fit together to make Smart Civic Connect work</p>
+    </header>
+
+    <div class="container">
+
+        <!-- High Level Architecture -->
+        <section class="content">
+            <h2>🏗️ High-Level Architecture</h2>
+
+            <p>Smart Civic Connect follows a modern <strong>full-stack architecture</strong> where the same framework
+                (Next.js) handles both the frontend (what users see) and backend (server logic).</p>
+
+            <div class="diagram">
+                <div class="diagram-flow" style="flex-direction: column; gap: 2rem;">
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                        <div class="diagram-box">👤 Citizen Browser</div>
+                        <div class="diagram-box">🔧 Admin Browser</div>
+                    </div>
+                    <div class="diagram-arrow" style="transform: rotate(90deg);">↓</div>
+                    <div class="diagram-box highlight" style="padding: 1.5rem 2rem;">🌐 Next.js
+                        Application<br><small>(Vercel)</small></div>
+                    <div class="diagram-arrow" style="transform: rotate(90deg);">↓</div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                        <div class="diagram-box">🔐 Clerk<br><small>Auth</small></div>
+                        <div class="diagram-box">🗄️ Supabase<br><small>Database</small></div>
+                        <div class="diagram-box">📁 Supabase<br><small>Storage</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>How Data Flows</h3>
+            <ol>
+                <li><strong>User visits the site</strong> → Request goes to Next.js on Vercel</li>
+                <li><strong>Next.js checks authentication</strong> → Using Clerk (citizens) or JWT (admin)</li>
+                <li><strong>Middleware validates access</strong> → Protects private routes</li>
+                <li><strong>Page renders</strong> → React components display the UI</li>
+                <li><strong>User submits data</strong> → Server Action or API route processes it</li>
+                <li><strong>Data saved to database</strong> → Supabase stores the information</li>
+                <li><strong>Images uploaded</strong> → Supabase Storage saves files</li>
+                <li><strong>Response sent back</strong> → User sees confirmation or updated data</li>
+            </ol>
+        </section>
+
+        <!-- Folder Structure -->
+        <section class="content">
+            <h2>📁 Project Folder Structure</h2>
+
+            <pre><code>SCC/
+├── app/                    # Next.js App Router (pages & routes)
+│   ├── (authenticated)/    # Protected routes (citizen area)
+│   │   ├── home/          # Citizen dashboard
+│   │   ├── complaints/    # Submit & view complaints
+│   │   └── admin/         # Admin dashboard & management
+│   ├── api/               # API endpoints
+│   ├── sign-in/           # Clerk sign-in page
+│   ├── sign-up/           # Clerk sign-up page
+│   ├── layout.tsx         # Root layout (wraps all pages)
+│   ├── page.tsx           # Landing page (/)
+│   └── globals.css        # Global styles
+│
+├── components/             # Reusable React components
+│   ├── admin/             # Admin-specific components
+│   ├── auth/              # Authentication components
+│   ├── complaints/        # Complaint-related components
+│   └── ui/                # Basic UI elements (buttons, cards)
+│
+├── lib/                    # Utility functions & configuration
+│   ├── actions/           # Server Actions (form processing)
+│   ├── supabase/          # Supabase client setup
+│   ├── auth.ts            # Authentication helpers
+│   ├── admin-auth.ts      # Admin auth logic
+│   └── utils.ts           # General utilities
+│
+├── hooks/                  # Custom React hooks
+│
+├── public/                 # Static files (images, icons)
+│   ├── icons/             # PWA icons
+│   └── .well-known/       # Asset links for TWA
+│
+├── sql/                    # Database scripts
+│   ├── schema.sql         # Table definitions
+│   ├── rls-policies.sql   # Security policies
+│   ├── seed.sql           # Initial data
+│   └── storage-policies-clerk.sql
+│
+├── scripts/                # Utility scripts
+│   ├── generate-icons.js  # PWA icon generator
+│   └── generate-admin-hash.js
+│
+├── docs/                   # Documentation files
+│
+├── guide/                  # This guide you're reading!
+│
+├── middleware.ts           # Route protection logic
+├── next.config.ts          # Next.js configuration
+├── package.json            # Dependencies list
+├── tailwind.config.ts      # Tailwind CSS settings
+└── .env                    # Environment variables (secrets)</code></pre>
+        </section>
+
+        <!-- Key Files Explained -->
+        <section class="content">
+            <h2>📄 Key Files Explained</h2>
+
+            <h3>Root Files</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>middleware.ts</code></td>
+                            <td>Runs before every request. Checks if users are authenticated, redirects unauthorized
+                                users, handles both Clerk and admin JWT auth.</td>
+                        </tr>
+                        <tr>
+                            <td><code>next.config.ts</code></td>
+                            <td>Configuration for Next.js including PWA settings, image domains, and build options.</td>
+                        </tr>
+                        <tr>
+                            <td><code>package.json</code></td>
+                            <td>Lists all dependencies (packages) the project needs. Also defines scripts like
+                                <code>npm run dev</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>tailwind.config.ts</code></td>
+                            <td>Customizes Tailwind CSS: colors, fonts, spacing values used throughout the app.</td>
+                        </tr>
+                        <tr>
+                            <td><code>.env</code></td>
+                            <td>Secret environment variables: API keys, database URLs, admin credentials.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>app/ Directory (Pages)</h3>
+            <p>In Next.js App Router, folders under <code>app/</code> become URL routes:</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Folder</th>
+                            <th>URL</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>app/page.tsx</code></td>
+                            <td><code>/</code></td>
+                            <td>Landing page (public)</td>
+                        </tr>
+                        <tr>
+                            <td><code>app/sign-in/</code></td>
+                            <td><code>/sign-in</code></td>
+                            <td>Clerk login page</td>
+                        </tr>
+                        <tr>
+                            <td><code>app/(authenticated)/home/</code></td>
+                            <td><code>/home</code></td>
+                            <td>Citizen dashboard (protected)</td>
+                        </tr>
+                        <tr>
+                            <td><code>app/(authenticated)/complaints/</code></td>
+                            <td><code>/complaints/*</code></td>
+                            <td>Complaint submission & list</td>
+                        </tr>
+                        <tr>
+                            <td><code>app/(authenticated)/admin/</code></td>
+                            <td><code>/admin/*</code></td>
+                            <td>Admin dashboard (protected)</td>
+                        </tr>
+                        <tr>
+                            <td><code>app/api/</code></td>
+                            <td><code>/api/*</code></td>
+                            <td>API endpoints</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box note">
+                <div class="info-box-title">📘 Route Groups</div>
+                <p>The <code>(authenticated)</code> folder with parentheses is a "route group." It doesn't become part
+                    of the URL but helps organize protected routes together.</p>
+            </div>
+        </section>
+
+        <!-- Authentication Architecture -->
+        <section class="content">
+            <h2>🔐 Dual Authentication System</h2>
+
+            <p>Smart Civic Connect uses <strong>two separate authentication systems</strong> for enhanced security:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">👤</div>
+                    <h3>Citizen Authentication</h3>
+                    <p><strong>Provider:</strong> Clerk</p>
+                    <p><strong>Routes:</strong> <code>/home</code>, <code>/complaints</code></p>
+                    <p><strong>Features:</strong> Email, Google, social login</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔧</div>
+                    <h3>Admin Authentication</h3>
+                    <p><strong>Provider:</strong> Custom JWT</p>
+                    <p><strong>Routes:</strong> <code>/admin/*</code></p>
+                    <p><strong>Features:</strong> Username/password, secure cookie</p>
+                </div>
+            </div>
+
+            <h3>How Middleware Routes Requests</h3>
+            <div class="diagram">
+                <pre
+                    style="background: var(--bg-code); padding: 1.5rem; border-radius: var(--radius-md); text-align: left; font-size: 0.8rem; line-height: 1.4; overflow-x: auto;">
+Request comes in
+        ↓
+┌─────────────────────────────────┐
+│         Is route /admin/* ?     │
+└─────────────────────────────────┘
+        ↓ YES                ↓ NO
+┌───────────────┐    ┌───────────────────────┐
+│ Check admin-  │    │ Is route protected?   │
+│ session cookie│    │ (/home, /complaints)  │
+└───────────────┘    └───────────────────────┘
+        ↓                     ↓ YES
+┌───────────────┐    ┌───────────────────────┐
+│ Valid JWT?    │    │ Check Clerk session   │
+└───────────────┘    └───────────────────────┘
+   ↓ NO    ↓ YES        ↓ NO       ↓ YES
+Redirect  Allow     Redirect to  Allow
+to login  access    /sign-in     access
+        </pre>
+            </div>
+        </section>
+
+        <!-- Database Schema -->
+        <section class="content">
+            <h2>🗃️ Database Schema</h2>
+
+            <p>The Supabase database contains the following tables:</p>
+
+            <h3>complaints</h3>
+            <p>Main table storing all citizen complaints.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>id</code></td>
+                            <td>UUID</td>
+                            <td>Unique identifier</td>
+                        </tr>
+                        <tr>
+                            <td><code>user_id</code></td>
+                            <td>Text</td>
+                            <td>Clerk user ID</td>
+                        </tr>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td>Text</td>
+                            <td>Complaint title</td>
+                        </tr>
+                        <tr>
+                            <td><code>description</code></td>
+                            <td>Text</td>
+                            <td>Detailed description</td>
+                        </tr>
+                        <tr>
+                            <td><code>category_id</code></td>
+                            <td>UUID</td>
+                            <td>Links to categories table</td>
+                        </tr>
+                        <tr>
+                            <td><code>status</code></td>
+                            <td>Text</td>
+                            <td>pending / in_progress / resolved</td>
+                        </tr>
+                        <tr>
+                            <td><code>image_url</code></td>
+                            <td>Text</td>
+                            <td>URL to uploaded photo</td>
+                        </tr>
+                        <tr>
+                            <td><code>location</code></td>
+                            <td>Text</td>
+                            <td>Address or description</td>
+                        </tr>
+                        <tr>
+                            <td><code>latitude</code></td>
+                            <td>Float</td>
+                            <td>GPS latitude</td>
+                        </tr>
+                        <tr>
+                            <td><code>longitude</code></td>
+                            <td>Float</td>
+                            <td>GPS longitude</td>
+                        </tr>
+                        <tr>
+                            <td><code>admin_response</code></td>
+                            <td>Text</td>
+                            <td>Admin's feedback</td>
+                        </tr>
+                        <tr>
+                            <td><code>created_at</code></td>
+                            <td>Timestamp</td>
+                            <td>When submitted</td>
+                        </tr>
+                        <tr>
+                            <td><code>updated_at</code></td>
+                            <td>Timestamp</td>
+                            <td>Last modification</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>categories</h3>
+            <p>Types of complaints available.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>id</code></td>
+                            <td>UUID</td>
+                            <td>Unique identifier</td>
+                        </tr>
+                        <tr>
+                            <td><code>name</code></td>
+                            <td>Text</td>
+                            <td>Category name (Roads, Water, etc.)</td>
+                        </tr>
+                        <tr>
+                            <td><code>description</code></td>
+                            <td>Text</td>
+                            <td>Category description</td>
+                        </tr>
+                        <tr>
+                            <td><code>icon</code></td>
+                            <td>Text</td>
+                            <td>Emoji or icon name</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>profiles</h3>
+            <p>Extended user information linked to Clerk accounts.</p>
+
+            <h3>notifications</h3>
+            <p>Status update notifications for users.</p>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Row Level Security</div>
+                <p>Supabase RLS policies ensure citizens can only see their OWN complaints, while admin accounts (using
+                    service role key) can see all data.</p>
+            </div>
+        </section>
+
+        <!-- Component Architecture -->
+        <section class="content">
+            <h2>🧩 Component Architecture</h2>
+
+            <p>React components are organized by feature and reusability:</p>
+
+            <pre><code>components/
+├── ui/                    # Basic, reusable UI elements
+│   ├── button.tsx         # Button with variants
+│   ├── card.tsx           # Card container
+│   ├── input.tsx          # Form input
+│   ├── badge.tsx          # Status badges
+│   ├── skeleton.tsx       # Loading placeholders
+│   └── ...
+│
+├── complaints/            # Complaint-specific components
+│   ├── complaint-form.tsx # New complaint form
+│   ├── complaint-card.tsx # Display a single complaint
+│   ├── complaint-list.tsx # List of complaints
+│   ├── image-upload.tsx   # Photo upload component
+│   └── location-picker.tsx # Map for selecting location
+│
+├── admin/                 # Admin dashboard components
+│   ├── admin-header.tsx   # Admin navigation
+│   ├── stats-cards.tsx    # Analytics cards
+│   ├── complaint-table.tsx # All complaints table
+│   └── status-updater.tsx # Change complaint status
+│
+├── auth/                  # Authentication components
+│   └── header.tsx         # User menu & sign out
+│
+└── theme-toggle.tsx       # Dark/light mode switch</code></pre>
+
+            <h3>Component Hierarchy Example</h3>
+            <pre><code>app/layout.tsx
+  └── ClerkProvider (auth context)
+      └── ThemeProvider (dark/light mode)
+          └── MainLayout
+              ├── Header (navigation, user menu)
+              ├── {children} (page content)
+              └── Footer</code></pre>
+        </section>
+
+        <!-- Data Flow -->
+        <section class="content">
+            <h2>🔄 Data Flow: Submitting a Complaint</h2>
+
+            <p>Here's what happens when a citizen submits a new complaint:</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">User Fills Form</div>
+                    <div class="step-content">
+                        <p>Citizen fills out the <code>ComplaintForm</code> component with title, description, category,
+                            location, and uploads a photo.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Image Uploads to Supabase Storage</div>
+                    <div class="step-content">
+                        <p>The photo is uploaded to the <code>complaint-images</code> bucket in Supabase Storage. A
+                            public URL is returned.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Server Action Called</div>
+                    <div class="step-content">
+                        <p>The form calls a Server Action (<code>createComplaint</code>) in
+                            <code>lib/actions/complaints.ts</code>.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Authentication Verified</div>
+                    <div class="step-content">
+                        <p>The action uses <code>auth()</code> to get the current user's Clerk ID.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Data Inserted into Database</div>
+                    <div class="step-content">
+                        <p>Supabase client inserts a new row into the <code>complaints</code> table with all the data.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">UI Updates</div>
+                    <div class="step-content">
+                        <p>The complaint list revalidates and shows the new complaint. User is redirected to the
+                            complaints page.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="content" style="text-align: center;">
+            <p>
+                <a href="setup.html" style="margin-right: 1rem;">← Setup Guide</a>
+                <a href="services.html"
+                    style="display: inline-block; background: linear-gradient(135deg, #2563eb, #0ea5e9); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">
+                    Next: Services →
+                </a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Smart Civic Connect</strong> - Client Guide</p>
+        <p>Developed by Syna Bhatnagar</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+    </script>
+
+</body>
+
+</html>

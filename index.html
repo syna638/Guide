@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Civic Connect - Client Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+                SCC Guide
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="overview.html" class="nav-link">Project Overview</a>
+                <a href="concepts.html" class="nav-link">Tech Concepts</a>
+                <a href="setup.html" class="nav-link">Setup Guide</a>
+                <a href="architecture.html" class="nav-link">Architecture</a>
+                <a href="interview.html" class="nav-link">Interview Prep</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Welcome to Smart Civic Connect</h1>
+        <p>Your complete guide to understanding, setting up, and maintaining the Smart Civic Connect platform</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Introduction -->
+        <section class="content">
+            <h2>What is This Guide?</h2>
+            <p>This guide is designed to help you understand everything about the <strong>Smart Civic Connect
+                    (SCC)</strong> project. Whether you're completely new to technology or just need a refresher, we've
+                got you covered!</p>
+
+            <div class="info-box note">
+                <div class="info-box-title">📘 Note</div>
+                <p>This guide uses simple language and explains technical terms as we go. No prior programming knowledge
+                    is required!</p>
+            </div>
+
+            <h3>Who is This Guide For?</h3>
+            <ul>
+                <li><strong>Project Owners</strong> who need to understand what they're managing</li>
+                <li><strong>Team Members</strong> who will maintain the project</li>
+                <li><strong>Students</strong> who want to learn from a real-world project</li>
+                <li><strong>Anyone</strong> curious about how modern web applications work</li>
+            </ul>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="content">
+            <h2>Quick Navigation</h2>
+            <p>Jump to the section that interests you most:</p>
+
+            <div class="card-grid">
+                <a href="overview.html" class="card" style="text-decoration: none;">
+                    <div class="card-icon">🎯</div>
+                    <h3>Project Overview</h3>
+                    <p>What does this project do? What problems does it solve?</p>
+                </a>
+
+                <a href="concepts.html" class="card" style="text-decoration: none;">
+                    <div class="card-icon">💡</div>
+                    <h3>Tech Concepts</h3>
+                    <p>Learn about Frontend, Backend, Middleware, APIs, and more</p>
+                </a>
+
+                <a href="setup.html" class="card" style="text-decoration: none;">
+                    <div class="card-icon">🛠️</div>
+                    <h3>Setup Guide</h3>
+                    <p>Step-by-step instructions to get the project running</p>
+                </a>
+
+                <a href="architecture.html" class="card" style="text-decoration: none;">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Architecture</h3>
+                    <p>How all the pieces fit together</p>
+                </a>
+
+                <a href="services.html" class="card" style="text-decoration: none;">
+                    <div class="card-icon">☁️</div>
+                    <h3>Services Used</h3>
+                    <p>Learn about Clerk, Supabase, Vercel, and other services</p>
+                </a>
+
+                <a href="interview.html" class="card" style="text-decoration: none;">
+                    <div class="card-icon">🎤</div>
+                    <h3>Interview Prep</h3>
+                    <p>Technical Q&A for explaining this project in interviews</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- At a Glance -->
+        <section class="content">
+            <h2>Project at a Glance</h2>
+
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Project Name</th>
+                        <td>Smart Civic Connect (SCC)</td>
+                    </tr>
+                    <tr>
+                        <th>Developer</th>
+                        <td>Syna Bhatnagar</td>
+                    </tr>
+                    <tr>
+                        <th>Purpose</th>
+                        <td>Citizen complaint management for civic issues</td>
+                    </tr>
+                    <tr>
+                        <th>Framework</th>
+                        <td>Next.js 15 (React-based)</td>
+                    </tr>
+                    <tr>
+                        <th>Authentication</th>
+                        <td>Clerk (citizens) + Custom JWT (admin)</td>
+                    </tr>
+                    <tr>
+                        <th>Database</th>
+                        <td>Supabase (PostgreSQL)</td>
+                    </tr>
+                    <tr>
+                        <th>Hosting</th>
+                        <td>Vercel (cloud platform)</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Support</th>
+                        <td>PWA + Android App (TWA)</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- How to Use This Guide -->
+        <section class="content">
+            <h2>How to Use This Guide</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Start with the Overview</div>
+                    <div class="step-content">
+                        <p>First, understand what the project does and why it was built. This gives you context for
+                            everything else.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Learn the Concepts</div>
+                    <div class="step-content">
+                        <p>Read through the Tech Concepts page to understand terms like "Frontend," "Backend," "API,"
+                            and "Database."</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Explore the Architecture</div>
+                    <div class="step-content">
+                        <p>See how all the pieces connect together. This is like looking at a map before starting a
+                            journey.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Follow the Setup Guide</div>
+                    <div class="step-content">
+                        <p>When you're ready to run the project, follow our step-by-step setup instructions.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Reference as Needed</div>
+                    <div class="step-content">
+                        <p>Keep this guide bookmarked. Come back whenever you need to refresh your memory!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Terms Preview -->
+        <section class="content">
+            <h2>Key Terms You'll Learn</h2>
+            <p>Here are some important terms you'll encounter throughout this guide. Don't worry if they seem confusing
+                now – we'll explain each one in detail!</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Term</th>
+                            <th>Simple Explanation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontend</strong></td>
+                            <td>The part of the website you see and interact with (buttons, forms, colors)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backend</strong></td>
+                            <td>The hidden part that processes data and talks to the database</td>
+                        </tr>
+                        <tr>
+                            <td><strong>API</strong></td>
+                            <td>A messenger that carries data between frontend and backend</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database</strong></td>
+                            <td>Where all the information is stored (like complaints, users)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Middleware</strong></td>
+                            <td>Security guard that checks every request before it's processed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Authentication</strong></td>
+                            <td>Proving who you are (like showing an ID)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PWA</strong></td>
+                            <td>A website that can be installed like an app on your phone</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Getting Started -->
+        <section class="content">
+            <h2>Ready to Begin?</h2>
+            <p>Great! Let's start your journey to understanding Smart Civic Connect.</p>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Tip</div>
+                <p>We recommend starting with the <a href="overview.html">Project Overview</a> to understand what this
+                    application does, then moving to <a href="concepts.html">Tech Concepts</a> to learn the technical
+                    background.</p>
+            </div>
+
+            <p style="text-align: center; margin-top: var(--spacing-xl);">
+                <a href="overview.html"
+                    style="display: inline-block; background: linear-gradient(135deg, #2563eb, #0ea5e9); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                    Get Started →
+                </a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Smart Civic Connect</strong> - Client Guide</p>
+        <p>Developed by Syna Bhatnagar</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+    </script>
+
+</body>
+
+</html>

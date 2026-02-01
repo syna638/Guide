@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Smart Civic Connect Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+                SCC Guide
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="overview.html" class="nav-link">Project Overview</a>
+                <a href="concepts.html" class="nav-link">Tech Concepts</a>
+                <a href="setup.html" class="nav-link">Setup Guide</a>
+                <a href="architecture.html" class="nav-link">Architecture</a>
+                <a href="interview.html" class="nav-link">Interview Prep</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>External Services</h1>
+        <p>Understanding the cloud services that power Smart Civic Connect</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Overview -->
+        <section class="content">
+            <h2>☁️ Cloud Services Overview</h2>
+
+            <p>Smart Civic Connect relies on three main external services (all with generous free tiers):</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🔐</div>
+                    <h3>Clerk</h3>
+                    <p>User authentication (login/signup for citizens)</p>
+                    <p><a href="https://clerk.com" target="_blank">clerk.com →</a></p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🗄️</div>
+                    <h3>Supabase</h3>
+                    <p>Database + file storage</p>
+                    <p><a href="https://supabase.com" target="_blank">supabase.com →</a></p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Vercel</h3>
+                    <p>Website hosting & deployment</p>
+                    <p><a href="https://vercel.com" target="_blank">vercel.com →</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clerk Deep Dive -->
+        <section class="content">
+            <h2>🔐 Clerk - Authentication Service</h2>
+
+            <h3>What is Clerk?</h3>
+            <p>Clerk is a complete authentication solution that handles everything related to user accounts:
+                registration, login, password reset, email verification, and social logins.</p>
+
+            <h3>Why Use Clerk?</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Quick Integration</h3>
+                    <p>Add authentication in minutes instead of weeks of development.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Security</h3>
+                    <p>Handles security best practices automatically: password hashing, session management, CSRF
+                        protection.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>Pre-built UI</h3>
+                    <p>Beautiful, customizable login and signup forms ready to use.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔗</div>
+                    <h3>Social Login</h3>
+                    <p>Google, Facebook, GitHub login with a few clicks.</p>
+                </div>
+            </div>
+
+            <h3>Clerk Dashboard</h3>
+            <p>The Clerk dashboard (at <a href="https://dashboard.clerk.com" target="_blank">dashboard.clerk.com</a>)
+                lets you:</p>
+            <ul>
+                <li><strong>View Users:</strong> See all registered users and their details</li>
+                <li><strong>Manage Sessions:</strong> See active sessions, sign users out remotely</li>
+                <li><strong>Configure Auth Methods:</strong> Enable/disable email, phone, social logins</li>
+                <li><strong>Customize UI:</strong> Change colors, logos, text on auth pages</li>
+                <li><strong>Set Redirect URLs:</strong> Where users go after login</li>
+                <li><strong>View Analytics:</strong> Sign-up rates, active users, etc.</li>
+            </ul>
+
+            <h3>Key Components Used</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>ClerkProvider</code></td>
+                            <td>Wraps the entire app to provide authentication context</td>
+                        </tr>
+                        <tr>
+                            <td><code>SignIn / SignUp</code></td>
+                            <td>Pre-built login and registration forms</td>
+                        </tr>
+                        <tr>
+                            <td><code>UserButton</code></td>
+                            <td>User avatar dropdown with profile and sign out</td>
+                        </tr>
+                        <tr>
+                            <td><code>auth()</code></td>
+                            <td>Server function to get current user info</td>
+                        </tr>
+                        <tr>
+                            <td><code>clerkMiddleware</code></td>
+                            <td>Protects routes at the edge (before page loads)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Free Tier Limits</h3>
+            <ul>
+                <li>10,000 Monthly Active Users (MAU)</li>
+                <li>Unlimited applications</li>
+                <li>All authentication methods</li>
+            </ul>
+        </section>
+
+        <!-- Supabase Deep Dive -->
+        <section class="content">
+            <h2>🗄️ Supabase - Database & Storage</h2>
+
+            <h3>What is Supabase?</h3>
+            <p>Supabase is an open-source alternative to Firebase. It provides a PostgreSQL database, file storage,
+                authentication (we use Clerk instead), and real-time subscriptions.</p>
+
+            <h3>What We Use Supabase For</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🗃️</div>
+                    <h3>Database</h3>
+                    <p>PostgreSQL database storing complaints, categories, profiles, and notifications.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📁</div>
+                    <h3>Storage</h3>
+                    <p>Cloud storage for uploaded complaint images.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Row Level Security</h3>
+                    <p>Database-level security rules ensuring data privacy.</p>
+                </div>
+            </div>
+
+            <h3>Supabase Dashboard</h3>
+            <p>The Supabase dashboard lets you:</p>
+            <ul>
+                <li><strong>Table Editor:</strong> View and edit data like a spreadsheet</li>
+                <li><strong>SQL Editor:</strong> Run SQL queries directly</li>
+                <li><strong>Storage:</strong> Manage uploaded files and buckets</li>
+                <li><strong>Logs:</strong> View database queries and errors</li>
+                <li><strong>Settings:</strong> Get API keys, configure security</li>
+            </ul>
+
+            <h3>Our Database Tables</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>Purpose</th>
+                            <th>Records</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>complaints</code></td>
+                            <td>All submitted complaints</td>
+                            <td>Many (grows with usage)</td>
+                        </tr>
+                        <tr>
+                            <td><code>categories</code></td>
+                            <td>Types of complaints</td>
+                            <td>~6 (seeded)</td>
+                        </tr>
+                        <tr>
+                            <td><code>profiles</code></td>
+                            <td>Extended user info</td>
+                            <td>One per user</td>
+                        </tr>
+                        <tr>
+                            <td><code>notifications</code></td>
+                            <td>Status update alerts</td>
+                            <td>Many</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Row Level Security (RLS)</h3>
+            <p>RLS is a powerful security feature that controls data access at the database level:</p>
+            <ul>
+                <li><strong>Citizens</strong> can only SELECT/INSERT their own complaints</li>
+                <li><strong>Admins</strong> (using service role key) can access all data</li>
+                <li>Even if someone gets your frontend code, they can't access others' data</li>
+            </ul>
+
+            <pre><code>-- Example RLS Policy
+CREATE POLICY "Users can view own complaints" ON complaints
+  FOR SELECT USING (user_id = auth.uid());</code></pre>
+
+            <h3>Storage Bucket</h3>
+            <p>The <code>complaint-images</code> bucket stores all uploaded photos. It's public so images can be
+                displayed in the app.</p>
+
+            <h3>Free Tier Limits</h3>
+            <ul>
+                <li>500 MB database storage</li>
+                <li>1 GB file storage</li>
+                <li>2 GB bandwidth per month</li>
+                <li>Unlimited API requests</li>
+            </ul>
+        </section>
+
+        <!-- Vercel Deep Dive -->
+        <section class="content">
+            <h2>🚀 Vercel - Hosting Platform</h2>
+
+            <h3>What is Vercel?</h3>
+            <p>Vercel is a cloud platform optimized for hosting Next.js applications. It automatically builds, deploys,
+                and hosts your website with zero configuration.</p>
+
+            <h3>Why Use Vercel?</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Automatic Deployments</h3>
+                    <p>Push to GitHub and Vercel automatically deploys in seconds.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>Global CDN</h3>
+                    <p>Your site is served from edge locations worldwide for fast loading.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Free HTTPS</h3>
+                    <p>SSL certificates are automatic and free.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>Built-in performance monitoring and analytics.</p>
+                </div>
+            </div>
+
+            <h3>Vercel Dashboard</h3>
+            <p>From the Vercel dashboard you can:</p>
+            <ul>
+                <li><strong>View Deployments:</strong> See build logs and deployment history</li>
+                <li><strong>Environment Variables:</strong> Set production secrets</li>
+                <li><strong>Domains:</strong> Add custom domains</li>
+                <li><strong>Analytics:</strong> View traffic and performance</li>
+                <li><strong>Logs:</strong> Debug production issues</li>
+            </ul>
+
+            <h3>How Deployment Works</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Push Code to GitHub</div>
+                    <div class="step-content">
+                        <p>Make changes locally and push to your repository.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Vercel Detects Changes</div>
+                    <div class="step-content">
+                        <p>Vercel is connected to your GitHub and notices the new commit.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Build Starts</div>
+                    <div class="step-content">
+                        <p>Vercel runs <code>npm run build</code> to create the production version.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Deploy to Edge</div>
+                    <div class="step-content">
+                        <p>The built app is deployed to Vercel's global CDN.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">Live!</div>
+                    <div class="step-content">
+                        <p>Your changes are live at your Vercel URL within ~1 minute.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Free Tier Limits</h3>
+            <ul>
+                <li>Unlimited personal projects</li>
+                <li>100 GB bandwidth per month</li>
+                <li>Automatic HTTPS</li>
+                <li>Serverless function limits (10 second execution)</li>
+            </ul>
+        </section>
+
+        <!-- Service Interaction -->
+        <section class="content">
+            <h2>🔗 How Services Work Together</h2>
+
+            <div class="diagram">
+                <pre
+                    style="background: var(--bg-code); padding: 1.5rem; border-radius: var(--radius-md); text-align: left; font-size: 0.8rem; line-height: 1.6; overflow-x: auto;">
+┌─────────────────────────────────────────────────────────────────┐
+│                         USER'S BROWSER                          │
+└─────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                        VERCEL (Hosting)                         │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                   Next.js Application                      │  │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐ │  │
+│  │  │   Frontend   │  │    API       │  │    Middleware    │ │  │
+│  │  │   (React)    │  │   Routes     │  │                  │ │  │
+│  │  └──────────────┘  └──────────────┘  └──────────────────┘ │  │
+│  └───────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+              │                                        │
+              ▼                                        ▼
+┌───────────────────────┐              ┌────────────────────────┐
+│        CLERK          │              │       SUPABASE         │
+│   (Authentication)    │              │  (Database + Storage)  │
+│                       │              │                        │
+│  • Verify JWT tokens  │              │  • PostgreSQL database │
+│  • Manage sessions    │              │  • File storage        │
+│  • User metadata      │              │  • RLS policies        │
+└───────────────────────┘              └────────────────────────┘
+        </pre>
+            </div>
+
+            <h3>Request Flow Example</h3>
+            <ol>
+                <li><strong>User clicks "Submit Complaint"</strong> → Request goes to Vercel</li>
+                <li><strong>Middleware checks Clerk session</strong> → User is authenticated</li>
+                <li><strong>Server Action runs</strong> → Processes the form data</li>
+                <li><strong>Upload image to Supabase Storage</strong> → Photo saved, URL returned</li>
+                <li><strong>Insert into Supabase Database</strong> → Complaint record created</li>
+                <li><strong>Response sent back</strong> → User sees success message</li>
+            </ol>
+        </section>
+
+        <!-- Cost Summary -->
+        <section class="content">
+            <h2>💰 Cost Summary</h2>
+
+            <p>All services have generous free tiers suitable for most small to medium projects:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Free Tier</th>
+                            <th>When to Upgrade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Clerk</strong></td>
+                            <td>10,000 MAU</td>
+                            <td>More than 10k users/month</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supabase</strong></td>
+                            <td>500MB DB, 1GB storage</td>
+                            <td>Running out of storage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vercel</strong></td>
+                            <td>100GB bandwidth</td>
+                            <td>High traffic or team features</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Tip</div>
+                <p>For most civic projects, the free tiers should cover thousands of users. Upgrade only when you hit
+                    limits.</p>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="content" style="text-align: center;">
+            <p>
+                <a href="architecture.html" style="margin-right: 1rem;">← Architecture</a>
+                <a href="interview.html"
+                    style="display: inline-block; background: linear-gradient(135deg, #2563eb, #0ea5e9); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">
+                    Next: Interview Prep →
+                </a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Smart Civic Connect</strong> - Client Guide</p>
+        <p>Developed by Syna Bhatnagar</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+    </script>
+
+</body>
+
+</html>

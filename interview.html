@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Prep - Smart Civic Connect Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .qa-card {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .qa-question {
+            background: var(--bg-tertiary);
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qa-question:hover {
+            background: var(--border-light);
+        }
+
+        .qa-question::after {
+            content: '+';
+            font-size: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .qa-card.open .qa-question::after {
+            content: '−';
+        }
+
+        .qa-answer {
+            display: none;
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .qa-card.open .qa-answer {
+            display: block;
+        }
+
+        .qa-answer p {
+            margin-bottom: 0.75rem;
+        }
+
+        .qa-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .level-basic {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .level-intermediate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .level-advanced {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-icon {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+                SCC Guide
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="overview.html" class="nav-link">Project Overview</a>
+                <a href="concepts.html" class="nav-link">Tech Concepts</a>
+                <a href="setup.html" class="nav-link">Setup Guide</a>
+                <a href="architecture.html" class="nav-link">Architecture</a>
+                <a href="interview.html" class="nav-link active">Interview Prep</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Interview Preparation</h1>
+        <p>Technical Q&A for explaining Smart Civic Connect in interviews</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Introduction -->
+        <section class="content">
+            <h2>🎤 About This Section</h2>
+            <p>This page prepares you to explain Smart Civic Connect in technical interviews. Questions are organized by
+                category and difficulty level:</p>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                <span class="level-badge level-basic">Basic</span>
+                <span>Fundamental concepts, great for entry-level interviews</span>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                <span class="level-badge level-intermediate">Intermediate</span>
+                <span>Technical details, for mid-level positions</span>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                <span class="level-badge level-advanced">Advanced</span>
+                <span>Architecture decisions, security, for senior roles</span>
+            </div>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Pro Tip</div>
+                <p>Click on any question to expand the answer. Practice saying these answers out loud!</p>
+            </div>
+        </section>
+
+        <!-- Project Overview Questions -->
+        <section class="content">
+            <div class="category-header">
+                <div class="category-icon">📋</div>
+                <h2>Project Overview</h2>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> What is Smart Civic Connect?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>Smart Civic Connect is a full-stack web application that enables citizens to report civic issues
+                        like potholes, broken streetlights, and sanitation problems to their local government.</p>
+                    <p><strong>Key features include:</strong></p>
+                    <ul>
+                        <li>Photo and GPS location submission</li>
+                        <li>Real-time status tracking (Pending → In Progress → Resolved)</li>
+                        <li>Admin dashboard for government officials to manage and resolve complaints</li>
+                        <li>PWA support for installation on any device</li>
+                    </ul>
+                    <p>It bridges the gap between citizens and government by digitizing the complaint process.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> What problem does this project
+                        solve?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>Traditional civic complaint systems are frustrating: long phone waits, lost paperwork, and no
+                        visibility into complaint status.</p>
+                    <p><strong>SCC solves this by:</strong></p>
+                    <ul>
+                        <li><strong>Instant submission:</strong> Report issues in seconds from your phone</li>
+                        <li><strong>Transparency:</strong> Track exactly where your complaint is in the process</li>
+                        <li><strong>Evidence:</strong> Photos and GPS make issues clear and verifiable</li>
+                        <li><strong>Efficiency:</strong> Admins can prioritize, filter, and resolve issues faster</li>
+                        <li><strong>Accountability:</strong> Digital trail ensures complaints aren't lost</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> What technologies did you use and
+                        why?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>Next.js 15 (React):</strong> Full-stack React framework with server-side rendering, API
+                        routes, and optimized performance. Chose it for the unified frontend/backend experience.</p>
+                    <p><strong>Clerk:</strong> Premium authentication service. Handles all auth complexity (social
+                        logins, email verification, session management) so I could focus on core features.</p>
+                    <p><strong>Supabase:</strong> Open-source Firebase alternative. Provides PostgreSQL database with
+                        Row Level Security, perfect for multi-tenant data where users should only see their own
+                        complaints.</p>
+                    <p><strong>Tailwind CSS:</strong> Utility-first CSS framework for rapid, consistent UI development.
+                    </p>
+                    <p><strong>TypeScript:</strong> Type safety catches bugs before runtime and improves developer
+                        experience.</p>
+                    <p><strong>Vercel:</strong> Purpose-built for Next.js with automatic deployments, edge functions,
+                        and global CDN.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frontend Questions -->
+        <section class="content">
+            <div class="category-header">
+                <div class="category-icon">🖥️</div>
+                <h2>Frontend & React</h2>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> What is the difference between client and
+                        server components in Next.js?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>Server Components (default in Next.js 13+):</strong></p>
+                    <ul>
+                        <li>Rendered on the server</li>
+                        <li>Can directly fetch data from databases</li>
+                        <li>No JavaScript sent to client (smaller bundle)</li>
+                        <li>Cannot use hooks like useState, useEffect</li>
+                    </ul>
+                    <p><strong>Client Components (marked with 'use client'):</strong></p>
+                    <ul>
+                        <li>Rendered in the browser</li>
+                        <li>Can use React hooks and browser APIs</li>
+                        <li>Required for interactivity (forms, buttons, animations)</li>
+                        <li>JavaScript included in client bundle</li>
+                    </ul>
+                    <p>In SCC, I use Server Components for data fetching (complaint lists) and Client Components for
+                        interactive elements (forms, modals, location picker).</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-intermediate">Intermediate</span> How do you handle form
+                        submissions in Next.js 15?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>I use <strong>Server Actions</strong>, a Next.js feature that lets you define server-side
+                        functions that can be called directly from forms.</p>
+                    <pre><code>// lib/actions/complaints.ts
+'use server'
+
+export async function createComplaint(formData: FormData) {
+  const { userId } = await auth()  // Get authenticated user
+  if (!userId) throw new Error('Unauthorized')
+  
+  // Validate and process data
+  const title = formData.get('title')
+  
+  // Insert into database
+  await supabase.from('complaints').insert({...})
+  
+  // Revalidate cache
+  revalidatePath('/complaints')
+}</code></pre>
+                    <p><strong>Benefits:</strong></p>
+                    <ul>
+                        <li>No need for separate API routes</li>
+                        <li>Automatic form handling with progressive enhancement</li>
+                        <li>Type-safe with TypeScript</li>
+                        <li>Works even if JavaScript fails (graceful degradation)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-intermediate">Intermediate</span> How did you implement the
+                        location picker feature?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>I used <strong>Leaflet</strong> and <strong>React-Leaflet</strong> for interactive maps:</p>
+                    <ul>
+                        <li>Map displays with OpenStreetMap tiles (free)</li>
+                        <li>User can click to place a marker or use their GPS location</li>
+                        <li>Coordinates (lat/lng) are captured and stored with the complaint</li>
+                        <li>Location is displayed as a map preview in complaint details</li>
+                    </ul>
+                    <p>The component is a Client Component because it requires browser APIs (geolocation, DOM
+                        manipulation).</p>
+                    <pre><code>// Uses browser geolocation API
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+    setLocation({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    })
+  }
+)</code></pre>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> How did you implement dark mode?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>I used the <strong>next-themes</strong> library which:</p>
+                    <ul>
+                        <li>Persists theme preference in localStorage</li>
+                        <li>Respects system preference by default</li>
+                        <li>Prevents flash of wrong theme on load</li>
+                        <li>Adds a class to the HTML element that Tailwind uses for dark variants</li>
+                    </ul>
+                    <p>Tailwind's <code>dark:</code> prefix applies dark mode styles:</p>
+                    <pre><code>&lt;div className="bg-white dark:bg-gray-900 text-black dark:text-white"&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Backend Questions -->
+        <section class="content">
+            <div class="category-header">
+                <div class="category-icon">⚙️</div>
+                <h2>Backend & APIs</h2>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-intermediate">Intermediate</span> How do you handle file
+                        uploads?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>Image uploads go to <strong>Supabase Storage:</strong></p>
+                    <ol>
+                        <li>Client selects image from camera or gallery</li>
+                        <li>Image is compressed client-side for faster upload</li>
+                        <li>Uploaded to Supabase Storage bucket <code>complaint-images</code></li>
+                        <li>Public URL is returned and stored with the complaint</li>
+                    </ol>
+                    <pre><code>const { data, error } = await supabase.storage
+  .from('complaint-images')
+  .upload(`${userId}/${fileName}`, file)
+
+// Get public URL
+const { publicUrl } = supabase.storage
+  .from('complaint-images')
+  .getPublicUrl(data.path)</code></pre>
+                    <p><strong>Security:</strong> Storage policies ensure only authenticated users can upload, and files
+                        are organized by user ID.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-advanced">Advanced</span> Explain how you handle authentication
+                        in middleware.</span>
+                </div>
+                <div class="qa-answer">
+                    <p>Our <code>middleware.ts</code> handles <strong>dual authentication systems:</strong></p>
+
+                    <p><strong>1. Route Classification:</strong></p>
+                    <pre><code>const isAdminRoute = createRouteMatcher(["/admin(.*)"])
+const isCitizenRoute = createRouteMatcher(["/home(.*)", "/complaints(.*)"])
+const isPublicRoute = createRouteMatcher(["/", "/sign-in(.*)"])</code></pre>
+
+                    <p><strong>2. Admin Routes (/admin/*):</strong></p>
+                    <ul>
+                        <li>Read <code>admin-session</code> cookie from request</li>
+                        <li>Verify JWT using jose library (Edge-compatible)</li>
+                        <li>If valid, allow access; if not, redirect to <code>/admin/login</code></li>
+                    </ul>
+
+                    <p><strong>3. Citizen Routes (/home, /complaints):</strong></p>
+                    <ul>
+                        <li>Use Clerk's <code>auth()</code> to check session</li>
+                        <li>If no userId, call <code>redirectToSignIn()</code></li>
+                    </ul>
+
+                    <p><strong>4. Supabase Session:</strong></p>
+                    <ul>
+                        <li>Refresh Supabase session tokens at the start of every request</li>
+                        <li>Ensures database queries use fresh credentials</li>
+                    </ul>
+
+                    <p>This runs at the Edge (before the page even loads) for maximum security and performance.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-intermediate">Intermediate</span> Why did you use two separate
+                        authentication systems?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>Security through separation:</strong></p>
+                    <ul>
+                        <li>Admin credentials are completely isolated from citizen accounts</li>
+                        <li>Even if a citizen account is compromised, admin access is safe</li>
+                        <li>Admin auth uses simpler, more controlled username/password (no social login attack surface)
+                        </li>
+                    </ul>
+                    <p><strong>Different requirements:</strong></p>
+                    <ul>
+                        <li><strong>Citizens:</strong> Need easy signup, social logins, password reset → Clerk excels at
+                            this</li>
+                        <li><strong>Admins:</strong> Few users, controlled credentials, simpler is better → Custom JWT
+                        </li>
+                    </ul>
+                    <p><strong>Cost efficiency:</strong></p>
+                    <ul>
+                        <li>Clerk charges per Monthly Active User</li>
+                        <li>Keeping admin auth separate means admins don't count against Clerk limits</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database Questions -->
+        <section class="content">
+            <div class="category-header">
+                <div class="category-icon">🗄️</div>
+                <h2>Database & Security</h2>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-intermediate">Intermediate</span> What is Row Level Security
+                        (RLS) and how do you use it?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>Row Level Security</strong> is a PostgreSQL feature that controls which rows each user
+                        can access at the database level.</p>
+                    <p><strong>Why it matters:</strong> Even if someone bypasses your app code, the database itself
+                        enforces access rules.</p>
+                    <p><strong>Example policy:</strong></p>
+                    <pre><code>-- Users can only SELECT their own complaints
+CREATE POLICY "Users can view own complaints"
+  ON complaints
+  FOR SELECT
+  USING (user_id = current_setting('request.jwt.claims')::json->>'sub');</code></pre>
+                    <p><strong>In SCC:</strong></p>
+                    <ul>
+                        <li>Citizens can only read/write their own complaints</li>
+                        <li>Admin operations use the <code>service_role</code> key which bypasses RLS</li>
+                        <li>Categories are readable by everyone (no user restriction)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> How is the database structured?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>We have four main tables:</p>
+                    <p><strong>complaints:</strong> Core table with title, description, category_id (FK), user_id,
+                        status, image_url, location data, admin_response, timestamps.</p>
+                    <p><strong>categories:</strong> Lookup table with name, description, icon. Seeded with Roads, Water,
+                        Electricity, Sanitation, etc.</p>
+                    <p><strong>profiles:</strong> Extended user info linked to Clerk user IDs.</p>
+                    <p><strong>notifications:</strong> Status update alerts with read/unread state.</p>
+                    <p><strong>Relationships:</strong></p>
+                    <ul>
+                        <li>complaints.category_id → categories.id (many-to-one)</li>
+                        <li>complaints.user_id → Clerk user ID (string reference)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-advanced">Advanced</span> How do you handle the different API
+                        keys for Supabase?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>Supabase provides two key types:</p>
+
+                    <p><strong>1. anon/public key (NEXT_PUBLIC_SUPABASE_ANON_KEY):</strong></p>
+                    <ul>
+                        <li>Safe to expose in client-side code</li>
+                        <li>All queries are subject to RLS policies</li>
+                        <li>Used for citizen operations</li>
+                    </ul>
+
+                    <p><strong>2. service_role key (SUPABASE_SERVICE_ROLE_KEY):</strong></p>
+                    <ul>
+                        <li>NEVER expose to client (server-only)</li>
+                        <li>Bypasses all RLS policies</li>
+                        <li>Used for admin operations and server-side data fetching</li>
+                    </ul>
+
+                    <p><strong>Implementation:</strong></p>
+                    <pre><code>// Client operations - uses anon key, respects RLS
+const supabaseClient = createBrowserClient(url, anonKey)
+
+// Server operations - uses service role for full access
+const supabaseAdmin = createServiceClient(url, serviceKey)</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Questions -->
+        <section class="content">
+            <div class="category-header">
+                <div class="category-icon">🏗️</div>
+                <h2>Architecture & Design Decisions</h2>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-advanced">Advanced</span> What would you change if you had to
+                        scale this to millions of users?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>Database:</strong></p>
+                    <ul>
+                        <li>Add indexes on frequently queried columns (status, created_at, user_id)</li>
+                        <li>Implement database partitioning by date or region</li>
+                        <li>Consider read replicas for heavy read operations</li>
+                    </ul>
+                    <p><strong>Caching:</strong></p>
+                    <ul>
+                        <li>Add Redis for session caching and frequently accessed data</li>
+                        <li>Implement ISR (Incremental Static Regeneration) for dashboard pages</li>
+                        <li>Use CDN for complaint images</li>
+                    </ul>
+                    <p><strong>Architecture:</strong></p>
+                    <ul>
+                        <li>Separate read/write APIs for different scaling needs</li>
+                        <li>Implement queue system for image processing</li>
+                        <li>Consider microservices if different complaint types have different processing needs</li>
+                    </ul>
+                    <p><strong>Monitoring:</strong></p>
+                    <ul>
+                        <li>Add proper observability (logs, metrics, traces)</li>
+                        <li>Implement rate limiting per user</li>
+                        <li>Set up alerting for performance degradation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-intermediate">Intermediate</span> How do you handle errors in
+                        the application?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>Client-side:</strong></p>
+                    <ul>
+                        <li>React Error Boundaries catch component errors</li>
+                        <li>Form validation with Zod before submission</li>
+                        <li>Toast notifications for user-friendly error messages</li>
+                    </ul>
+                    <p><strong>Server-side:</strong></p>
+                    <ul>
+                        <li>Try-catch in all Server Actions</li>
+                        <li>Custom error responses with appropriate status codes</li>
+                        <li>Structured error logging for debugging</li>
+                    </ul>
+                    <p><strong>Middleware:</strong></p>
+                    <ul>
+                        <li>Global catch-all error handler</li>
+                        <li>Graceful degradation (if Supabase session refresh fails, continue with request)</li>
+                        <li>Different error handling for dev vs production (detailed logs in dev only)</li>
+                    </ul>
+                    <pre><code>// error.tsx - Next.js error boundary
+export default function Error({ error, reset }) {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Something went wrong!&lt;/h2&gt;
+      &lt;button onClick={reset}&gt;Try again&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-intermediate">Intermediate</span> What is a PWA and why did you
+                        implement it?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>A <strong>Progressive Web App</strong> is a website that can be installed on devices and work
+                        like a native app.</p>
+                    <p><strong>SCC as a PWA provides:</strong></p>
+                    <ul>
+                        <li><strong>Installable:</strong> Users can add to home screen, no app store needed</li>
+                        <li><strong>Offline support:</strong> Cached pages work without internet</li>
+                        <li><strong>Native feel:</strong> Full-screen mode, app icon, splash screen</li>
+                        <li><strong>Cross-platform:</strong> Same codebase works on phones, tablets, desktops</li>
+                    </ul>
+                    <p><strong>Implementation:</strong></p>
+                    <ul>
+                        <li>Used <code>@ducanh2912/next-pwa</code> package</li>
+                        <li>Created <code>manifest.json</code> with app metadata</li>
+                        <li>Generated icons in all required sizes</li>
+                        <li>Service worker auto-generated during build</li>
+                    </ul>
+                    <p><strong>Benefits for civic apps:</strong> Users in low-connectivity areas can still view their
+                        complaints and compose new ones for later submission.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Behavioral Questions -->
+        <section class="content">
+            <div class="category-header">
+                <div class="category-icon">💭</div>
+                <h2>Behavioral & Situational</h2>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> What was the most challenging part of this
+                        project?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>The dual authentication system</strong> was the biggest challenge.</p>
+                    <p><strong>The problem:</strong> Next.js middleware runs at the Edge, but many auth libraries use
+                        Node.js-specific APIs that don't work there.</p>
+                    <p><strong>What I learned:</strong></p>
+                    <ul>
+                        <li>Edge Runtime limitations and how to work around them</li>
+                        <li>How to use jose library for Edge-compatible JWT verification</li>
+                        <li>The importance of reading library documentation carefully</li>
+                        <li>Debugging auth issues by breaking down the flow step by step</li>
+                    </ul>
+                    <p><strong>Solution:</strong> Created separate auth utilities specifically for middleware that don't
+                        use any server-only APIs.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> If you could start over, what would you do
+                        differently?</span>
+                </div>
+                <div class="qa-answer">
+                    <p><strong>Start with better planning:</strong></p>
+                    <ul>
+                        <li>Document the database schema before coding</li>
+                        <li>Plan the auth strategy earlier (the dual-auth complexity emerged over time)</li>
+                    </ul>
+                    <p><strong>Testing:</strong></p>
+                    <ul>
+                        <li>Add unit tests for Server Actions from the beginning</li>
+                        <li>Set up E2E tests with Playwright earlier</li>
+                    </ul>
+                    <p><strong>Code organization:</strong></p>
+                    <ul>
+                        <li>More consistent error handling patterns from day one</li>
+                        <li>Better type definitions for API responses</li>
+                    </ul>
+                    <p>That said, the iterative approach helped me learn and adapt as requirements became clearer.</p>
+                </div>
+            </div>
+
+            <div class="qa-card">
+                <div class="qa-question" onclick="toggleQA(this)">
+                    <span><span class="level-badge level-basic">Basic</span> How would you explain this project to a
+                        non-technical person?</span>
+                </div>
+                <div class="qa-answer">
+                    <p>"Have you ever seen a pothole and wished you could just take a photo and send it to the city?
+                        That's exactly what Smart Civic Connect does.</p>
+                    <p>You open the app, take a photo of the problem, and it automatically knows your location. You add
+                        a quick description and submit.</p>
+                    <p>On the other side, city officials see all these reports on a dashboard. They can mark things as
+                        'we're working on it' or 'fixed', and you get updates on your phone.</p>
+                    <p>It's like tracking a package, but for neighborhood problems. Everyone can see their issues are
+                        being addressed, and the city can respond faster because everything's organized in one place."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="content">
+            <h2>📝 Quick Reference Cards</h2>
+
+            <p>Use these as talking points when discussing the project:</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Tech Stack</h3>
+                    <ul style="font-size: 0.875rem;">
+                        <li>Next.js 15 + React 19</li>
+                        <li>TypeScript</li>
+                        <li>Tailwind CSS</li>
+                        <li>Clerk Auth</li>
+                        <li>Supabase (PostgreSQL)</li>
+                        <li>Vercel Hosting</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">✨</div>
+                    <h3>Key Features</h3>
+                    <ul style="font-size: 0.875rem;">
+                        <li>Photo + GPS complaints</li>
+                        <li>Real-time status tracking</li>
+                        <li>Admin dashboard</li>
+                        <li>PWA installable</li>
+                        <li>Dual auth system</li>
+                        <li>Row Level Security</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Buzzwords</h3>
+                    <ul style="font-size: 0.875rem;">
+                        <li>Full-stack</li>
+                        <li>JAMstack</li>
+                        <li>Server Components</li>
+                        <li>Server Actions</li>
+                        <li>Edge Middleware</li>
+                        <li>Progressive Web App</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Metrics to Mention</h3>
+                    <ul style="font-size: 0.875rem;">
+                        <li>~35 React components</li>
+                        <li>14 environment variables</li>
+                        <li>4 database tables</li>
+                        <li>Dual auth systems</li>
+                        <li>PWA + TWA ready</li>
+                        <li>Mobile responsive</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="content" style="text-align: center;">
+            <p>
+                <a href="services.html" style="margin-right: 1rem;">← Services</a>
+                <a href="index.html"
+                    style="display: inline-block; background: linear-gradient(135deg, #2563eb, #0ea5e9); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">
+                    Back to Home →
+                </a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Smart Civic Connect</strong> - Client Guide</p>
+        <p>Developed by Syna Bhatnagar</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        function toggleQA(element) {
+            const card = element.parentElement;
+            card.classList.toggle('open');
+        }
+    </script>
+
+</body>
+
+</html>
